@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Pure React Samples</title>
+</head>
+<body>
+
+<!-- Target container -->
+<div id="react-container"></div>
+
+<!-- React library & ReactDOM -->
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script crossorigin src="https://unpkg.com/create-react-class@15.6.0-rc.0/create-react-class.min.js"></script>
+
+<script>
+
+    // Pure React and JavaScript code
+    React.DOM.ul({"className": "ingredients"},
+        React.DOM.li(null, "1 lb Salmon"),
+        React.DOM.li(null, "1 cup Pine Nuts"),
+        React.DOM.li(null, "2 cups Butter Lettuce"),
+        React.DOM.li(null, "1 Yellow Squash"),
+        React.DOM.li(null, "1/2 cup Olive Oil"),
+        React.DOM.li(null, "3 cloves of Garlic")
+    )
+
+</script>
+
+</body>
+</html>
