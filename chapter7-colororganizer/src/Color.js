@@ -1,16 +1,56 @@
 import React from 'react';
-import StarRatingPresentational from "./StarRatingPresentational";
+import StarRatingPresentational from "./components/StarRatingPresentational";
+import PropTypes from 'prop-types';
+// import Star from "./components/Star";
 
-const Color = ({ title, color, rating=0, onRemove=f=>f, onRate=f=>f }) =>
-    <section className="color">
-        <h1>{title}</h1>
-        <button onClick={onRemove}>X</button>
-        <div className="color"
-             style={{ backgroundColor: color }}>
-        </div>
-        <div>
-            <StarRatingPresentational starsSelected={rating} onRate={onRate} />
-        </div>
-    </section>;
+export default class Color extends React.Component {
+    componentWillMount() {
+        this.style = { backgroundColor: "#CCC" }
+    }
 
-export default Color
+    componentWillUpdate(nextProps) {
+        const { title, rating } = this.props;
+        this.style = null;
+        this.refs.title.style.backgroundColor = "red";
+        this.refs.title.style.color = "white";
+        alert(`${title}: rating ${rating} -> ${nextProps.rating}`);
+    }
+
+    shouldComponentUpdate(nextProps) {
+        return this.props.rating !== nextProps.rating;
+    }
+
+    componentDidUpdate(prevProps) {
+        const { rating } = this.props;
+        const status = (rating > prevProps.rating) ? 'better' : 'worse';
+        this.refs.title.style.backgroundColor = "";
+        this.refs.title.style.color = "black";
+    }
+
+    render() {
+        const { title, color, rating=0, onRate } = this.props;
+        return (
+            <section className="color" style={this.style}>
+                <h1 ref="title">{title}</h1>
+                <div className="color"
+                     style={{backgroundColor: color}}>
+                </div>
+                <StarRatingPresentational starsSelected={rating} onRate={onRate} />
+            </section>
+        )
+    }
+}
+
+Color.propTypes = {
+    title: PropTypes.string,
+    rating: PropTypes.number,
+    color: PropTypes.string,
+    onRate: PropTypes.func
+};
+
+Color.defaultProps = {
+    title: undefined,
+    rating: 0,
+    color: "#000000",
+    onRate: f => f
+};
