@@ -8,13 +8,14 @@ const target = document.getElementById('react-container');
 class Clock extends Component {
     constructor() {
         super();
-        this.state = getClockTime()
+        console.log(getClockTime());
+        this.state = {...getClockTime()}
     }
 
     componentDidMount() {
         console.log("Starting Clock");
         this.ticking = setInterval(() =>
-            this.setState(getClockTime())
+            this.setState({ ...getClockTime() })
             , 1000)
     }
 
@@ -24,6 +25,7 @@ class Clock extends Component {
     }
 
     render() {
+        console.log(this.state);
         const { hours, minutes, seconds, timeOfDay } = this.state;
         return (
             <div className="clock">

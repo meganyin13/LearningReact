@@ -1,4 +1,4 @@
-function getClockTime() {
+export function getClockTime() {
     var date = new Date();
     // var time = "";
     var time = {
@@ -22,8 +22,11 @@ function getClockTime() {
     if (time.seconds < 10) {
         time.seconds = "0" + time.seconds;
     }
-    return time.hours + ":"
-        + time.minutes + ":"
-        + time.seconds + " "
-        + time.ampm;
+    return {
+        hours: time.hours,
+        minutes: time.minutes,
+        seconds: time.seconds,
+        timeOfDay: time.ampm
+    }
 }
+
