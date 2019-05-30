@@ -148,6 +148,6 @@ store.dispatch( addColor("#F142FF", "Party Pink") );
 const store_factory = storeFactory(true);
 
 console.log(store_factory);
-store_factory( addColor("#FFFFFF","Bright White") );
+store_factory.dispatch( addColor("#FFFFFF","Bright White") );
 store_factory.dispatch( addColor("#00FF00","Lawn") );
 store_factory.dispatch( addColor("#0000FF","Big Blue") );

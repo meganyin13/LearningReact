@@ -7,14 +7,14 @@ import { colors, sort } from './reducers';
 import stateData from './initialstate';
 
 const logger = store => next => action => {
-    // let result;
+    let result;
     console.groupCollapsed("dispatching", action.type);
     console.log('prev state', store.getState());
     console.log('action', action);
-    // result =
-    next(action);
+    result = next(action);
     console.log('next state', store.getState());
-    console.groupEnd()
+    console.groupEnd();
+    return result;
 };
 
 const saver = store => next => action => {
